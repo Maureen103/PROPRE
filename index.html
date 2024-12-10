@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Beau Site</title>
+    <title>Beau Site Interactif</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         /* Réinitialisation globale */
@@ -18,9 +18,10 @@
             font-family: 'Roboto', sans-serif;
             background: linear-gradient(to right, #0d0d0d, #262626);
             color: #ddd;
+            overflow-x: hidden;
         }
 
-        /* En-tête */
+        /* En-tête avec animation typing */
         header {
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
@@ -29,6 +30,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.6);
             margin-bottom: 10px;
+            position: relative;
         }
 
         header h1 {
@@ -36,9 +38,7 @@
             overflow: hidden;
             border-right: .15em solid white;
             white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: .15em;
-            animation: typing 3s steps(40, end), blink .75s step-end infinite;
+            animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
         }
 
         @keyframes typing {
@@ -65,7 +65,6 @@
             color: white;
             text-decoration: none;
             padding: 10px 15px;
-            font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -75,70 +74,15 @@
             transform: translateY(-2px);
         }
 
-        /* Sections */
-        .section {
-            display: none;
-            padding: 30px 20px;
-            margin: 20px auto;
-            max-width: 800px;
-            border-radius: 10px;
-            background: rgba(30, 30, 30, 0.9);
-            color: #ddd;
-            transition: all 0.3s ease;
+        /* Parallax effect */
+        .parallax {
+            height: 300px;
+            background-image: url('https://source.unsplash.com/random/1600x900');
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
         }
 
-        .section.active {
-            display: block;
-        }
-
-        /* Galerie */
-        .gallery img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
-        }
-
-        /* Pied de page */
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background: rgba(0, 0, 0, 0.9);
-            color: #aaa;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        /* Formulaire */
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        input, textarea, button {
-            padding: 10px;
-            border-radius: 5px;
-            border: none;
-            font-size: 1rem;
-        }
-
-        button {
-            background: #2575fc;
-            color: white;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background: #1a5dcc;
-        }
-        
         /* Retour en haut */
         #backToTop {
             position: fixed;
@@ -148,81 +92,90 @@
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
-            display: none;
             cursor: pointer;
+            display: none;
             transition: all 0.3s ease;
         }
 
+        /* Popup animé */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+            transition: all 0.3s ease;
+        }
+
+        /* Effets de zoom sur images */
+        .gallery img {
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.2);
+        }
+
+        /* Formulaire interactif */
+        form {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 600px;
+            border-radius: 8px;
+            background: #333;
+            color: #ddd;
+        }
     </style>
 </head>
 <body>
     <!-- En-tête -->
     <header>
-        <h1>Bienvenue sur le Beau Site</h1>
+        <h1>Bienvenue sur le Beau Site Interactif</h1>
     </header>
 
     <!-- Menu de navigation -->
     <nav>
-        <a onclick="showSection('about')">À propos d'Aebid</a>
-        <a onclick="showSection('gallery')">Galerie</a>
-        <a onclick="showSection('contact')">Contact</a>
+        <a onclick="showPopup()">Popup</a>
+        <a onclick="scrollToTop()">Retour en haut</a>
     </nav>
 
-    <!-- Sections -->
-    <div class="section" id="about">
-        <h2>À Propos d'Aebid</h2>
-        <p>
-            Aebid94 est un créateur de contenu YouTube spécialisé dans le jeu Roblox, notamment sur *Blox Fruits*.
-            Ses vidéos sont amusantes, informatives et captivantes, avec une communauté en constante croissance.
-        </p>
-        <h3>La vidéo la plus vue :</h3>
-        <iframe src="https://www.youtube.com/embed/DgL5eN7f7XI" allowfullscreen></iframe>
+    <!-- Parallax dynamique -->
+    <div class="parallax"></div>
+
+    <!-- Popup animé -->
+    <div id="popup">
+        <p>Bienvenue sur le site Aebid94 !</p>
+        <button onclick="closePopup()">Fermer</button>
     </div>
 
-    <div class="section" id="gallery">
-        <h2>Galerie</h2>
-        <div class="gallery">
-            <img src="https://source.unsplash.com/200x200/?gaming" alt="Gaming 1">
-            <img src="https://source.unsplash.com/201x200/?adventure" alt="Gaming 2">
-            <img src="https://source.unsplash.com/202x200/?technology" alt="Gaming 3">
-            <img src="https://source.unsplash.com/203x200/?roblox" alt="Gaming 4">
-        </div>
-    </div>
-
-    <div class="section" id="contact">
-        <h2>Contact</h2>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Votre nom" required>
-            <input type="email" name="email" placeholder="Votre e-mail" required>
-            <textarea name="message" placeholder="Votre message" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-    </div>
-
-    <div id="backToTop">Retour en haut</div>
-
-    <!-- Pied de page -->
-    <footer>
-        &copy; 2024 Beau Site. Tous droits réservés.
-    </footer>
+    <!-- Retour en haut dynamique -->
+    <div id="backToTop" onclick="scrollToTop()">Retour en haut</div>
 
     <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.classList.remove('active'));
-            const targetSection = document.getElementById(sectionId);
-            targetSection.classList.add('active');
+        // Afficher popup
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
         }
 
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            backToTop.style.display = window.scrollY > 100 ? 'block' : 'none';
-        });
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
 
-        backToTop.addEventListener('click', () => {
+        // Scroll vers le haut avec une animation
+        function scrollToTop() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Afficher le bouton "Retour en haut" après défilement
+        window.addEventListener('scroll', () => {
+            const backToTop = document.getElementById('backToTop');
+            backToTop.style.display = window.scrollY > 100 ? 'block' : 'none';
         });
     </script>
 </body>
 </html>
-
