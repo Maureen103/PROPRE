@@ -16,110 +16,51 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.6;
             color: #333;
+            background-color: #f4f4f9;
+            padding: 0 20px;
         }
 
         header {
             background: linear-gradient(to right, #4facfe, #00f2fe);
             color: white;
+            text-align: center;
             padding: 20px 0;
-            text-align: center;
+            margin-bottom: 20px;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-around;
-            background: #4facfe;
-            padding: 10px 0;
+        header h1 {
+            font-size: 2.5rem;
         }
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            padding: 5px 15px;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        nav a:hover {
-            background: #00f2fe;
-            border-radius: 5px;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background: url('https://via.placeholder.com/1920x500') no-repeat center center/cover;
-            color: white;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-
-        .hero p {
+        header p {
             font-size: 1.2rem;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            padding: 20px;
-        }
-
-        .gallery img {
-            width: 100%;
-            border-radius: 10px;
-            transition: transform 0.3s;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
+        section {
+            margin-bottom: 20px;
         }
 
         footer {
             background: #333;
             color: white;
             text-align: center;
-            padding: 20px 0;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            nav {
-                flex-direction: column;
-            }
+            padding: 10px 0;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Bienvenue sur mon beau site</h1>
-        <p>Une expérience moderne et élégante</p>
+        <p>Une expérience simple et élégante</p>
     </header>
-    <nav>
-        <a href="#">Accueil</a>
-        <a href="#about">À propos</a>
-        <a href="#gallery">Galerie</a>
-        <a href="#contact">Contact</a>
-    </nav>
-    <section class="hero">
-        <h1>Explorez la beauté</h1>
-        <p>Des designs modernes pour tous vos projets</p>
+    <section>
+        <h2>À propos</h2>
+        <p>Ceci est un exemple de site minimaliste avec une mise en page propre et simple.</p>
     </section>
-    <section class="gallery" id="gallery">
-        <img src="https://via.placeholder.com/300x200" alt="Image 1">
-        <img src="https://via.placeholder.com/300x200" alt="Image 2">
-        <img src="https://via.placeholder.com/300x200" alt="Image 3">
-        <img src="https://via.placeholder.com/300x200" alt="Image 4">
+    <section>
+        <h2>Galerie</h2>
+        <p>Ajoutez vos images ici pour embellir votre site.</p>
     </section>
     <footer>
         <p>&copy; 2024 Beau Site. Tous droits réservés.</p>
