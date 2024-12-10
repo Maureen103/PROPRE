@@ -33,6 +33,22 @@
 
         header h1 {
             font-size: 2.5rem;
+            overflow: hidden;
+            border-right: .15em solid white;
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: .15em;
+            animation: typing 3s steps(40, end), blink .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent; }
+            50% { border-color: white; }
         }
 
         /* Navigation avec boutons */
@@ -80,11 +96,12 @@
             width: 100%;
             height: auto;
             border-radius: 8px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .gallery img:hover {
             transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
         }
 
         footer {
@@ -100,6 +117,35 @@
             max-width: 100%;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+        }
+
+        /* Formulaire */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input, textarea, button {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        button {
+            background: #2575fc;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: #1a5dcc;
+        }
+
+        .upload {
+            color: #aaa;
         }
     </style>
 </head>
@@ -134,19 +180,28 @@
     <div class="section" id="gallery">
         <h2>Galerie</h2>
         <div class="gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
-            <img src="https://source.unsplash.com/200x200/?nature" alt="Nature 1">
-            <img src="https://source.unsplash.com/201x200/?nature" alt="Nature 2">
-            <img src="https://source.unsplash.com/202x200/?nature" alt="Nature 3">
-            <img src="https://source.unsplash.com/203x200/?nature" alt="Nature 4">
+            <img src="https://source.unsplash.com/200x200/?gaming" alt="Gaming 1">
+            <img src="https://source.unsplash.com/201x200/?adventure" alt="Gaming 2">
+            <img src="https://source.unsplash.com/202x200/?technology" alt="Gaming 3">
+            <img src="https://source.unsplash.com/203x200/?roblox" alt="Gaming 4">
         </div>
     </div>
 
     <div class="section" id="contact">
         <h2>Contact</h2>
         <form id="contact-form">
+            <label for="name">Votre nom :</label>
             <input type="text" name="name" placeholder="Votre nom" required>
+            
+            <label for="email">Votre email :</label>
             <input type="email" name="email" placeholder="Votre e-mail" required>
+
+            <label for="message">Votre message :</label>
             <textarea name="message" placeholder="Votre message" required></textarea>
+
+            <label for="image" class="upload">Ajouter une image :</label>
+            <input type="file" name="image" accept="image/*">
+
             <button type="submit">Envoyer</button>
         </form>
     </div>
@@ -156,16 +211,26 @@
         &copy; 2024 Beau Site. Tous droits réservés.
     </footer>
 
-    <!-- Script JS pour basculer entre les sections -->
+    <!-- Script JS pour les fonctionnalités -->
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        // Initialise EmailJS avec ton User ID
+        // Initialisation EmailJS
         emailjs.init("IY7nlTGik3QIOkpFo");
+
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            
+            emailjs.sendForm('service_716hnuk', 'template_q162zz8', this)
+                .then(function () {
+                    alert('Message envoyé avec succès !');
+                }, function (error) {
+                    alert('Erreur : ' + JSON.stringify(error));
+                });
+        });
 
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
+            sections.forEach(section => {                section.classList.remove('active');
             });
             const targetSection = document.getElementById(sectionId);
             targetSection.classList.add('active');
@@ -173,18 +238,17 @@
 
         // Par défaut, afficher la section "À propos"
         showSection('about');
-
-        // Gestion du formulaire de contact
-        document.getElementById('contact-form').addEventListener('submit', function (event) {
-            event.preventDefault(); // Empêche le rechargement de la page
-
-            // Envoie le formulaire via EmailJS
-            emailjs.sendForm('service_716hnuk', 'template_q162zz8', this)
-                .then(function () {
-                    alert('Message envoyé avec succès !');
-                }, function (error) {
-                    alert('Erreur : ' + JSON.stringify(error));
-                });
+        
+        // Animation de la galerie
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryImages = document.querySelectorAll('.gallery img');
+            galleryImages.forEach(image => {
+                image.style.opacity = '0';
+                setTimeout(() => {
+                    image.style.transition = 'opacity 1s ease-in';
+                    image.style.opacity = '1';
+                }, Math.random() * 1000);
+            });
         });
     </script>
 </body>
