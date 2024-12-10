@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Époustouflant</title>
+    <title>Beau Site</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Réinitialisation globale */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Corps principal */
         body {
             font-family: 'Roboto', sans-serif;
-            line-height: 1.6;
+            background: linear-gradient(to right, #0d0d0d, #262626);
             color: #ddd;
-            background: linear-gradient(135deg, #000, #333);
-            padding: 0 20px;
             transition: background 0.5s ease;
         }
 
@@ -26,135 +26,131 @@
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             text-align: center;
-            padding: 30px 0;
-            margin-bottom: 30px;
+            padding: 20px 0;
+            margin-bottom: 20px;
             border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7);
-            transform: scale(1);
-            transition: transform 0.3s ease-in-out;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
         }
 
-        header:hover {
-            transform: scale(1.1);
+        header h1 {
+            font-size: 2.5rem;
         }
 
-        /* Navigation */
+        header p {
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+
+        /* Navigation avec ancres */
         nav {
             display: flex;
             justify-content: center;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             padding: 10px 0;
-            border-radius: 8px;
             margin-bottom: 20px;
-            transition: background 0.3s ease;
+            border-radius: 5px;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 10px 15px;
             font-size: 1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         nav a:hover {
             color: #ff9800;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 50px 20px;
-            background: url('https://source.unsplash.com/1600x900') no-repeat center center/cover;
-            color: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
-            animation: slideIn 1.5s ease-out;
-        }
-
-        /* Gallery Section */
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            padding: 20px;
+        /* Sections */
+        section {
+            padding: 30px 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            background: rgba(30, 30, 30, 0.9);
             transition: transform 0.3s ease;
         }
 
+        section:hover {
+            transform: scale(1.05);
+        }
+
+        /* Effets pour la galerie */
         .gallery img {
             width: 100%;
-            height: 250px;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            height: auto;
+            border-radius: 8px;
             transition: transform 0.3s ease;
         }
 
         .gallery img:hover {
-            transform: scale(1.1) rotate(3deg);
+            transform: scale(1.1);
         }
 
         /* Footer */
         footer {
-            background: rgba(0, 0, 0, 0.9);
-            color: #aaa;
             text-align: center;
             padding: 15px 0;
-            margin-top: 20px;
-            border-radius: 8px;
-            transition: color 0.3s ease;
-        }
-
-        footer:hover {
-            color: white;
-        }
-
-        /* Animations */
-        @keyframes slideIn {
-            0% {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            nav {
-                flex-direction: column;
-            }
+            background: rgba(0, 0, 0, 0.8);
+            color: #aaa;
+            margin-top: 30px;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
+    <!-- En-tête -->
     <header>
-        <h1>Site Époustouflant</h1>
-        <p>Un design moderne avec des effets incroyables</p>
+        <h1>Bienvenue sur le Beau Site</h1>
+        <p>Une expérience simple et élégante</p>
     </header>
+
+    <!-- Navigation avec ancres -->
     <nav>
-        <a href="#">Accueil</a>
         <a href="#about">À propos</a>
         <a href="#gallery">Galerie</a>
         <a href="#contact">Contact</a>
     </nav>
-    <section class="hero">
-        <h1>Découvrez la magie</h1>
-        <p>Des animations et des transitions pour un rendu exceptionnel</p>
+
+    <!-- Section À propos -->
+    <section id="about">
+        <h2>À Propos</h2>
+        <p>
+            Ce site représente une démonstration d'éléments modernes, avec une navigation fluide et un design épuré.
+            L'objectif est de proposer une expérience utilisateur immersive avec des animations subtiles et des transitions modernes.
+        </p>
     </section>
-    <section class="gallery">
-        <img src="https://source.unsplash.com/300x200" alt="Galerie 1">
-        <img src="https://source.unsplash.com/300x201" alt="Galerie 2">
-        <img src="https://source.unsplash.com/300x202" alt="Galerie 3">
-        <img src="https://source.unsplash.com/300x203" alt="Galerie 4">
+
+    <!-- Section Galerie -->
+    <section id="gallery">
+        <h2>Galerie</h2>
+        <div class="gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+            <img src="https://source.unsplash.com/200x200/?nature" alt="Nature 1">
+            <img src="https://source.unsplash.com/201x200/?nature" alt="Nature 2">
+            <img src="https://source.unsplash.com/202x200/?nature" alt="Nature 3">
+            <img src="https://source.unsplash.com/203x200/?nature" alt="Nature 4">
+        </div>
     </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+        <h2>Contact</h2>
+        <form action="#" method="POST" style="max-width: 500px; margin: auto;">
+            <label for="name">Votre nom :</label><br>
+            <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;"><br><br>
+            <label for="email">Votre email :</label><br>
+            <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;"><br><br>
+            <label for="message">Votre message :</label><br>
+            <textarea id="message" name="message" rows="4" style="width: 100%; padding: 8px;"></textarea><br><br>
+            <button type="submit" style="padding: 10px 20px; background-color: #2575fc; color: white; border: none; border-radius: 5px; cursor: pointer;">Envoyer</button>
+        </form>
+    </section>
+
+    <!-- Pied de page -->
     <footer>
-        <p>&copy; 2024 Site Époustouflant. Tous droits réservés.</p>
+        &copy; 2024 Beau Site. Tous droits réservés.
     </footer>
 </body>
 </html>
