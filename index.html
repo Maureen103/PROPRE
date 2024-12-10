@@ -51,7 +51,7 @@
             50% { border-color: white; }
         }
 
-        /* Navigation avec boutons */
+        /* Navigation */
         nav {
             display: flex;
             justify-content: center;
@@ -75,7 +75,7 @@
             transform: translateY(-2px);
         }
 
-        /* Sections avec visibilité conditionnelle */
+        /* Sections */
         .section {
             display: none;
             padding: 30px 20px;
@@ -91,7 +91,7 @@
             display: block;
         }
 
-        /* Styles Galerie */
+        /* Galerie */
         .gallery img {
             width: 100%;
             height: auto;
@@ -104,6 +104,7 @@
             box-shadow: 0 4px 8px rgba(255, 255, 255, 0.6);
         }
 
+        /* Pied de page */
         footer {
             text-align: center;
             padding: 10px 0;
@@ -111,12 +112,6 @@
             color: #aaa;
             border-radius: 5px;
             margin-top: 20px;
-        }
-
-        iframe {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
         }
 
         /* Formulaire */
@@ -143,10 +138,21 @@
         button:hover {
             background: #1a5dcc;
         }
-
-        .upload {
-            color: #aaa;
+        
+        /* Retour en haut */
+        #backToTop {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #2575fc;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
+
     </style>
 </head>
 <body>
@@ -168,18 +174,14 @@
         <p>
             Aebid94 est un créateur de contenu YouTube spécialisé dans le jeu Roblox, notamment sur *Blox Fruits*.
             Ses vidéos sont amusantes, informatives et captivantes, avec une communauté en constante croissance.
-            Si vous êtes un fan de Roblox ou cherchez des astuces sur Blox Fruits, vous pouvez le retrouver sur sa chaîne YouTube.
         </p>
-        <h3>La vidéo la plus vue de Aebid94 :</h3>
-        <iframe src="https://www.youtube.com/embed/DgL5eN7f7XI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p>
-            Pour le retrouver, tapez <strong>"Aebid blox fruit"</strong> sur YouTube.
-        </p>
+        <h3>La vidéo la plus vue :</h3>
+        <iframe src="https://www.youtube.com/embed/DgL5eN7f7XI" allowfullscreen></iframe>
     </div>
 
     <div class="section" id="gallery">
         <h2>Galerie</h2>
-        <div class="gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+        <div class="gallery">
             <img src="https://source.unsplash.com/200x200/?gaming" alt="Gaming 1">
             <img src="https://source.unsplash.com/201x200/?adventure" alt="Gaming 2">
             <img src="https://source.unsplash.com/202x200/?technology" alt="Gaming 3">
@@ -190,66 +192,37 @@
     <div class="section" id="contact">
         <h2>Contact</h2>
         <form id="contact-form">
-            <label for="name">Votre nom :</label>
             <input type="text" name="name" placeholder="Votre nom" required>
-            
-            <label for="email">Votre email :</label>
             <input type="email" name="email" placeholder="Votre e-mail" required>
-
-            <label for="message">Votre message :</label>
             <textarea name="message" placeholder="Votre message" required></textarea>
-
-            <label for="image" class="upload">Ajouter une image :</label>
-            <input type="file" name="image" accept="image/*">
-
             <button type="submit">Envoyer</button>
         </form>
     </div>
+
+    <div id="backToTop">Retour en haut</div>
 
     <!-- Pied de page -->
     <footer>
         &copy; 2024 Beau Site. Tous droits réservés.
     </footer>
 
-    <!-- Script JS pour les fonctionnalités -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
-        // Initialisation EmailJS
-        emailjs.init("IY7nlTGik3QIOkpFo");
-
-        document.getElementById('contact-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-            
-            emailjs.sendForm('service_716hnuk', 'template_q162zz8', this)
-                .then(function () {
-                    alert('Message envoyé avec succès !');
-                }, function (error) {
-                    alert('Erreur : ' + JSON.stringify(error));
-                });
-        });
-
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {                section.classList.remove('active');
-            });
+            sections.forEach(section => section.classList.remove('active'));
             const targetSection = document.getElementById(sectionId);
             targetSection.classList.add('active');
         }
 
-        // Par défaut, afficher la section "À propos"
-        showSection('about');
-        
-        // Animation de la galerie
-        document.addEventListener('DOMContentLoaded', function() {
-            const galleryImages = document.querySelectorAll('.gallery img');
-            galleryImages.forEach(image => {
-                image.style.opacity = '0';
-                setTimeout(() => {
-                    image.style.transition = 'opacity 1s ease-in';
-                    image.style.opacity = '1';
-                }, Math.random() * 1000);
-            });
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.style.display = window.scrollY > 100 ? 'block' : 'none';
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
 </body>
 </html>
+
