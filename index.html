@@ -18,36 +18,30 @@
             font-family: 'Roboto', sans-serif;
             background: linear-gradient(to right, #0d0d0d, #262626);
             color: #ddd;
-            transition: background 0.5s ease;
         }
 
-        /* Header */
+        /* En-tête */
         header {
             background: linear-gradient(to right, #6a11cb, #2575fc);
             color: white;
             text-align: center;
-            padding: 20px 0;
-            margin-bottom: 20px;
+            padding: 15px 0;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+            margin-bottom: 10px;
         }
 
         header h1 {
             font-size: 2.5rem;
         }
 
-        header p {
-            font-size: 1.2rem;
-            margin: 5px 0;
-        }
-
-        /* Navigation avec ancres */
+        /* Navigation avec boutons */
         nav {
             display: flex;
             justify-content: center;
             background: rgba(0, 0, 0, 0.7);
             padding: 10px 0;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             border-radius: 5px;
         }
 
@@ -56,6 +50,7 @@
             text-decoration: none;
             padding: 10px 15px;
             font-size: 1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
         }
 
@@ -64,20 +59,23 @@
             transform: translateY(-2px);
         }
 
-        /* Sections */
-        section {
+        /* Sections avec visibilité conditionnelle */
+        .section {
+            display: none;
             padding: 30px 20px;
-            margin-bottom: 30px;
+            margin: 20px auto;
+            max-width: 800px;
             border-radius: 10px;
             background: rgba(30, 30, 30, 0.9);
-            transition: transform 0.3s ease;
+            color: #ddd;
+            transition: all 0.3s ease;
         }
 
-        section:hover {
-            transform: scale(1.05);
+        .section.active {
+            display: block;
         }
 
-        /* Effets pour la galerie */
+        /* Styles Galerie */
         .gallery img {
             width: 100%;
             height: auto;
@@ -89,14 +87,13 @@
             transform: scale(1.1);
         }
 
-        /* Footer */
         footer {
             text-align: center;
-            padding: 15px 0;
-            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 0;
+            background: rgba(0, 0, 0, 0.9);
             color: #aaa;
-            margin-top: 30px;
             border-radius: 5px;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -104,53 +101,63 @@
     <!-- En-tête -->
     <header>
         <h1>Bienvenue sur le Beau Site</h1>
-        <p>Une expérience simple et élégante</p>
     </header>
 
-    <!-- Navigation avec ancres -->
+    <!-- Menu de navigation -->
     <nav>
-        <a href="#about">À propos</a>
-        <a href="#gallery">Galerie</a>
-        <a href="#contact">Contact</a>
+        <a onclick="showSection('about')">À propos</a>
+        <a onclick="showSection('gallery')">Galerie</a>
+        <a onclick="showSection('contact')">Contact</a>
     </nav>
 
-    <!-- Section À propos -->
-    <section id="about">
+    <!-- Sections -->
+    <div class="section" id="about">
         <h2>À Propos</h2>
         <p>
-            Ce site représente une démonstration d'éléments modernes, avec une navigation fluide et un design épuré.
-            L'objectif est de proposer une expérience utilisateur immersive avec des animations subtiles et des transitions modernes.
+            Ce site représente une démonstration avec une navigation dynamique. Le but est de permettre une expérience
+            utilisateur fluide, avec des transitions élégantes et un affichage optimisé.
         </p>
-    </section>
+    </div>
 
-    <!-- Section Galerie -->
-    <section id="gallery">
+    <div class="section" id="gallery">
         <h2>Galerie</h2>
-        <div class="gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+        <div class="gallery" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
             <img src="https://source.unsplash.com/200x200/?nature" alt="Nature 1">
             <img src="https://source.unsplash.com/201x200/?nature" alt="Nature 2">
             <img src="https://source.unsplash.com/202x200/?nature" alt="Nature 3">
             <img src="https://source.unsplash.com/203x200/?nature" alt="Nature 4">
         </div>
-    </section>
+    </div>
 
-    <!-- Section Contact -->
-    <section id="contact">
+    <div class="section" id="contact">
         <h2>Contact</h2>
-        <form action="#" method="POST" style="max-width: 500px; margin: auto;">
+        <form action="#" method="POST">
             <label for="name">Votre nom :</label><br>
-            <input type="text" id="name" name="name" required style="width: 100%; padding: 8px;"><br><br>
+            <input type="text" id="name" name="name" style="padding: 8px;"><br><br>
             <label for="email">Votre email :</label><br>
-            <input type="email" id="email" name="email" required style="width: 100%; padding: 8px;"><br><br>
-            <label for="message">Votre message :</label><br>
-            <textarea id="message" name="message" rows="4" style="width: 100%; padding: 8px;"></textarea><br><br>
-            <button type="submit" style="padding: 10px 20px; background-color: #2575fc; color: white; border: none; border-radius: 5px; cursor: pointer;">Envoyer</button>
+            <input type="email" id="email" name="email" style="padding: 8px;"><br><br>
+            <button type="submit" style="padding: 8px 15px; background: #2575fc; color: white; border: none; border-radius: 5px;">Envoyer</button>
         </form>
-    </section>
+    </div>
 
     <!-- Pied de page -->
     <footer>
         &copy; 2024 Beau Site. Tous droits réservés.
     </footer>
+
+    <!-- Script JS pour basculer entre les sections -->
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            const targetSection = document.getElementById(sectionId);
+            targetSection.classList.add('active');
+        }
+
+        // Par défaut, afficher la section "À propos"
+        showSection('about');
+    </script>
 </body>
 </html>
