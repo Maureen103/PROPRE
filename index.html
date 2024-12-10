@@ -143,12 +143,11 @@
 
     <div class="section" id="contact">
         <h2>Contact</h2>
-        <form action="#" method="POST">
-            <label for="name">Votre nom :</label><br>
-            <input type="text" id="name" name="name" style="padding: 8px;"><br><br>
-            <label for="email">Votre email :</label><br>
-            <input type="email" id="email" name="email" style="padding: 8px;"><br><br>
-            <button type="submit" style="padding: 8px 15px; background: #2575fc; color: white; border: none; border-radius: 5px;">Envoyer</button>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Votre nom" required>
+            <input type="email" name="email" placeholder="Votre e-mail" required>
+            <textarea name="message" placeholder="Votre message" required></textarea>
+            <button type="submit">Envoyer</button>
         </form>
     </div>
 
@@ -158,7 +157,11 @@
     </footer>
 
     <!-- Script JS pour basculer entre les sections -->
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
+        // Initialise EmailJS avec ton User ID
+        emailjs.init("IY7nlTGik3QIOkpFo");
+
         function showSection(sectionId) {
             const sections = document.querySelectorAll('.section');
             sections.forEach(section => {
@@ -170,6 +173,19 @@
 
         // Par défaut, afficher la section "À propos"
         showSection('about');
+
+        // Gestion du formulaire de contact
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Empêche le rechargement de la page
+
+            // Envoie le formulaire via EmailJS
+            emailjs.sendForm('service_716hnuk', 'template_q162zz8', this)
+                .then(function () {
+                    alert('Message envoyé avec succès !');
+                }, function (error) {
+                    alert('Erreur : ' + JSON.stringify(error));
+                });
+        });
     </script>
 </body>
 </html>
